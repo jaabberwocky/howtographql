@@ -20,6 +20,16 @@ const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
     feed: () => links,
+    link: (parent, args) => {
+      let selectedLink;
+
+      links.forEach((link) => {
+        if (link.id === args.id) {
+          selectedLink = link;
+        }
+      });
+      return selectedLink;
+    },
   },
   // because this is a trivial implementation
   // the below resolver is not needed and is provided by default
