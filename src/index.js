@@ -51,6 +51,24 @@ const resolvers = {
       links.push(link);
       return link;
     },
+
+    updateLink: (parent, args) => {
+        let selectedLink;
+
+        links = links.map((link) => {
+            if (link.id === args.id) {
+                if (args.description) {
+                    link.description = args.description;
+                }
+                if (args.url) {
+                    link.url = args.url;
+                }
+                selectedLink = link;
+            } 
+            return link;
+        })
+        return selectedLink;
+    }
   },
 };
 
