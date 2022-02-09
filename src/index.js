@@ -68,6 +68,20 @@ const resolvers = {
             return link;
         })
         return selectedLink;
+    },
+
+    deleteLink: (parent, args) => {
+        let selectedLink;
+
+        links = links.filter((link) => {
+            if (link.id === args.id) {
+                selectedLink = link;
+                return false;
+            }
+            return true;
+        })
+
+        return selectedLink;
     }
   },
 };
