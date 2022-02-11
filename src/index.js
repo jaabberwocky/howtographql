@@ -4,12 +4,15 @@ const fs = require("fs");
 const path = require("path");
 const utils = require('./utils/util');
 
+const prisma = new PrismaClient();
+
 const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
-    feed: async (parent, args, context, info) => { 
-      console.log(context.prisma); 
-      return links },
+    feed: async (parent, args, context, info) => {
+      let allLinks = context.prisma.link.findMany();
+      return allLinks;
+    },
     link: (parent, args) => {
       let selectedLink;
 
@@ -75,8 +78,6 @@ const resolvers = {
     },
   },
 };
-
-const prisma = new PrismaClient();
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf-8"),
