@@ -35,7 +35,7 @@ const resolvers = {
   // because this is a trivial implementation
   // the below resolver is not needed and is provided by default
   Link: {
-    id: (parent) => parent.id + "<--- this is the id",
+    id: (parent) => parent.id,
     description: (parent) => parent.description,
     url: (parent) => parent.url,
   },
